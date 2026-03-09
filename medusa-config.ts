@@ -67,6 +67,34 @@ module.exports = defineConfig({
         redisUrl: process.env.REDIS_URL,
       },
     },
+    // ── Payment Providers (Razorpay + PayU) ────────────────────────────────────
+    {
+      resolve: "@medusajs/medusa/payment",
+      options: {
+        providers: [
+          // ── Razorpay ──────────────────────────────────────────────────────
+          {
+            resolve: "./src/modules/razorpay",
+            id: "razorpay",
+            options: {
+              key_id: process.env.RAZORPAY_KEY_ID,
+              key_secret: process.env.RAZORPAY_KEY_SECRET,
+              webhook_secret: process.env.RAZORPAY_WEBHOOK_SECRET,
+            },
+          },
+          // ── PayU India ────────────────────────────────────────────────────
+          {
+            resolve: "./src/providers/payu",
+            id: "payu",
+            options: {
+              merchantKey: process.env.PAYU_MERCHANT_KEY,
+              merchantSalt: process.env.PAYU_MERCHANT_SALT,
+              mode: process.env.PAYU_MODE || "test",
+            },
+          },
+        ],
+      },
+    },
   ],
 })
 
