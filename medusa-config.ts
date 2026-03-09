@@ -84,7 +84,7 @@ module.exports = defineConfig({
           },
           // ── PayU India ────────────────────────────────────────────────────
           {
-            resolve: "./src/providers/payu",
+            resolve: "./src/providers/payu/module",
             id: "payu",
             options: {
               merchantKey: process.env.PAYU_MERCHANT_KEY,
